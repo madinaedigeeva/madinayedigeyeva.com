@@ -1,0 +1,167 @@
+/* Madina Yedigeyeva — personal site.
+   No framework, no build step, no external requests. One stylesheet, hand-written,
+   so that in five years it still renders exactly as it does today. */
+
+:root {
+  --bg: #fdfdfc;
+  --fg: #1a1a18;
+  --muted: #5f5f58;
+  --rule: #e2e0da;
+  --accent: #7a4b2a;
+  --card: #f6f5f1;
+  --max: 44rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14140f;
+    --fg: #ece9e1;
+    --muted: #9b968a;
+    --rule: #2e2d26;
+    --accent: #d9a273;
+    --card: #1c1b15;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 1.0625rem/1.65 ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-synthesis-weight: none;
+}
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
+
+/* ---------- header ---------- */
+
+header {
+  border-bottom: 1px solid var(--rule);
+  padding: 2.5rem 0 1.25rem;
+}
+
+header .name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.15rem;
+}
+header .name a { color: inherit; text-decoration: none; }
+
+header .role {
+  margin: 0 0 1.5rem;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+nav { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+
+nav a {
+  font: 500 0.875rem/1 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid transparent;
+}
+nav a:hover { color: var(--fg); }
+nav a[aria-current="page"] { color: var(--fg); border-bottom-color: var(--accent); }
+
+/* ---------- content ---------- */
+
+main { padding: 3rem 0 4rem; }
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  margin: 0 0 1.5rem;
+}
+
+h2 {
+  font: 600 0.8125rem/1 ui-sans-serif, system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 3rem 0 1rem;
+}
+
+h3 { font-size: 1.0625rem; font-weight: 600; margin: 0 0 0.35rem; }
+
+p { margin: 0 0 1.15rem; }
+
+.lead { font-size: 1.1875rem; line-height: 1.55; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+hr { border: 0; border-top: 1px solid var(--rule); margin: 3rem 0; }
+
+/* ---------- item list (works, projects) ---------- */
+
+.item {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem 0;
+}
+.item:last-child { border-bottom: 1px solid var(--rule); }
+.item h3 a { color: inherit; text-decoration: none; }
+.item h3 a:hover { color: var(--accent); text-decoration: underline; }
+.item .meta {
+  font: 400 0.875rem/1.5 ui-sans-serif, system-ui, sans-serif;
+  color: var(--muted);
+  margin: 0 0 0.6rem;
+}
+.item p:last-child { margin-bottom: 0; }
+
+.ids {
+  font: 400 0.8125rem/1.6 ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  color: var(--muted);
+  margin-top: 0.6rem;
+  word-break: break-word;
+}
+.ids a { color: var(--muted); }
+.ids a:hover { color: var(--accent); }
+
+/* ---------- callout ---------- */
+
+.note {
+  background: var(--card);
+  border-left: 3px solid var(--accent);
+  padding: 1.15rem 1.35rem;
+  margin: 2rem 0;
+  font-size: 0.9375rem;
+}
+.note p:last-child { margin-bottom: 0; }
+
+/* ---------- footer ---------- */
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 2rem 0 3rem;
+  font: 400 0.875rem/1.6 ui-sans-serif, system-ui, sans-serif;
+  color: var(--muted);
+}
+footer ul { list-style: none; margin: 0 0 1rem; padding: 0; display: flex; flex-wrap: wrap; gap: 1.25rem; }
+footer a { color: var(--muted); }
+footer a:hover { color: var(--accent); }
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 34rem) {
+  body { font-size: 1rem; }
+  header { padding-top: 2rem; }
+  h1 { font-size: 1.5rem; }
+  .lead { font-size: 1.0625rem; }
+  main { padding: 2.25rem 0 3rem; }
+}
+
+@media print {
+  :root { --bg: #fff; --fg: #000; --muted: #444; --rule: #ccc; --accent: #000; }
+  nav, footer { display: none; }
+}

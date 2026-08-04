@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://madinayedigeyeva.com/sitemap.xml
