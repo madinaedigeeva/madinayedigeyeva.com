@@ -11,15 +11,26 @@ Every page shares `style.css`; the nav lives in each page's `<header>` and is fo
 
 ## Deploying
 
-GitHub Pages, from `main`. `CNAME` points at the apex domain; DNS for it must be:
+GitHub Pages, from `main`. `CNAME` points at the apex domain. DNS records, from GitHub's own
+[custom-domain documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site):
 
 ```
 A     @    185.199.108.153
 A     @    185.199.109.153
 A     @    185.199.110.153
 A     @    185.199.111.153
+AAAA  @    2606:50c0:8000::153
+AAAA  @    2606:50c0:8001::153
+AAAA  @    2606:50c0:8002::153
+AAAA  @    2606:50c0:8003::153
 CNAME www  madinaedigeeva.github.io.
 ```
+
+**On Cloudflare, set every one of these to "DNS only" (grey cloud), not proxied.** GitHub's
+documentation describes these records as resolving directly to Pages, and says HTTPS may take
+up to 24 hours to become available — it does not document proxying, and a proxy in front of the
+apex is an undocumented extra hop while the certificate is being issued. Proxying can be turned
+on later, once HTTPS is confirmed working, if there is a reason to.
 
 Then enable **Enforce HTTPS** in Settings → Pages once the certificate is issued.
 
